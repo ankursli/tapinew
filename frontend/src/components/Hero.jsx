@@ -41,24 +41,24 @@ export const Hero = () => {
       {/* Parallax image layer */}
       <motion.div
         style={{ y: yImg, scale: scaleImg }}
-        className="absolute inset-0 -z-10"
+        className="absolute inset-0 z-0"
       >
         <img
           src={IMAGES.heroRiver}
           alt="The sacred Tapi river at sunrise"
           className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-paper via-paper/50 to-paper/20" />
-        <div className="absolute inset-0 bg-gradient-to-r from-paper/85 via-paper/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-paper via-paper/70 to-paper/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-paper via-paper/10 to-transparent" />
       </motion.div>
 
       {/* soft floating blobs */}
-      <div className="pointer-events-none absolute -top-16 right-10 h-72 w-72 rounded-full bg-saffron/10 blur-3xl animate-floaty -z-10" />
-      <div className="pointer-events-none absolute bottom-24 right-1/3 h-64 w-64 rounded-full bg-river/10 blur-3xl animate-floaty -z-10" style={{ animationDelay: "2s" }} />
+      <div className="pointer-events-none absolute -top-16 right-10 h-72 w-72 rounded-full bg-saffron/10 blur-3xl animate-floaty z-[1]" />
+      <div className="pointer-events-none absolute bottom-24 right-1/3 h-64 w-64 rounded-full bg-river/10 blur-3xl animate-floaty z-[1]" style={{ animationDelay: "2s" }} />
 
       <motion.div
         style={{ y: yText, opacity }}
-        className="relative mx-auto max-w-7xl px-5 md:px-8 pt-36 md:pt-44 pb-16 min-h-screen flex flex-col justify-center"
+        className="relative z-10 mx-auto max-w-7xl px-5 md:px-8 pt-36 md:pt-44 pb-16 min-h-screen flex flex-col justify-center"
       >
         <motion.div
           initial={{ opacity: 0, y: 20 }}

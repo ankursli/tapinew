@@ -68,6 +68,20 @@ export const Heritage = () => (
         </Reveal>
       </div>
 
+      <Reveal delay={0.1}>
+        <div className="mt-12 relative overflow-hidden rounded-[2rem] shadow-lift">
+          <img
+            src={IMAGES.riverAerial}
+            alt="Aerial view of the Tapi river flowing through Surat"
+            className="w-full h-[300px] md:h-[440px] object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent" />
+          <span className="absolute bottom-6 left-6 md:left-8 text-white font-display text-2xl md:text-3xl">
+            The Tapi, threading through Suryapur
+          </span>
+        </div>
+      </Reveal>
+
       <div className="mt-12 grid md:grid-cols-3 gap-5">
         {HERITAGE.points.map((point, i) => (
           <motion.div

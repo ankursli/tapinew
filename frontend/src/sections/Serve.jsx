@@ -36,18 +36,25 @@ export const Activities = () => (
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.7, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative overflow-hidden rounded-3xl border border-border/70 bg-white p-7 hover:-translate-y-1.5 hover:shadow-lift transition-[transform,box-shadow] duration-500"
+              className="group relative overflow-hidden rounded-3xl border border-border/70 bg-white hover:-translate-y-1.5 hover:shadow-lift transition-[transform,box-shadow] duration-500"
             >
-              <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-saffron/5 group-hover:bg-saffron/10 transition-colors" />
-              <span className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-saffron/10 text-saffron group-hover:bg-saffron group-hover:text-white transition-colors duration-500">
-                <Icon className="h-6 w-6" strokeWidth={1.6} />
-              </span>
-              <h3 className="relative mt-6 font-display text-2xl text-ink">
-                {a.title}
-              </h3>
-              <p className="relative mt-3 text-sm text-ink-soft leading-relaxed">
-                {a.text}
-              </p>
+              <div className="relative h-44 overflow-hidden">
+                <img
+                  src={a.image}
+                  alt={a.title}
+                  className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/55 via-ink/10 to-transparent" />
+                <span className="absolute bottom-3 left-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/90 text-saffron backdrop-blur-sm shadow-soft">
+                  <Icon className="h-6 w-6" strokeWidth={1.6} />
+                </span>
+              </div>
+              <div className="p-6">
+                <h3 className="font-display text-2xl text-ink">{a.title}</h3>
+                <p className="mt-2.5 text-sm text-ink-soft leading-relaxed">
+                  {a.text}
+                </p>
+              </div>
             </motion.div>
           );
         })}

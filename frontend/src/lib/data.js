@@ -35,6 +35,16 @@ export const IMAGES = {
     "https://images.unsplash.com/photo-1706631519116-6607d09107b2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHw0fHxJbmRpYW4lMjByaXZlciUyMGhlcml0YWdlfGVufDB8fHx8MTc4NTU2OTAyMnww&ixlib=rb-4.1.0&q=85",
   community:
     "https://images.unsplash.com/photo-1758599668932-484f54cdf48f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTV8MHwxfHNlYXJjaHwzfHxjb21tdW5pdHklMjByaXZlciUyMGNsZWFuJTIwdXAlMjBuYXR1cmV8ZW58MHx8fHwxNzg1NTY5MDIyfDA&ixlib=rb-4.1.0&q=85",
+  riverAerial:
+    "https://mgx-backend-cdn.metadl.com/generate/images/345098/2026-07-14/spxeaxqcai2a/tapi-river-aerial-morning.png",
+  diyas:
+    "https://mgx-backend-cdn.metadl.com/generate/images/345098/2026-07-14/spxec5acai2a/gallery-mass-aarti-diyas.png",
+  bloodDonation:
+    "https://images.unsplash.com/photo-1615461066159-fea0960485d5?crop=entropy&cs=srgb&fm=jpg&q=80&w=1200&fit=crop&ixlib=rb-4.1.0",
+  treePlantation:
+    "https://images.unsplash.com/photo-1625758476104-f2ed6c81248f?crop=entropy&cs=srgb&fm=jpg&q=80&w=1200&fit=crop&ixlib=rb-4.1.0",
+  disasterRelief:
+    "https://images.unsplash.com/photo-1616680214429-d79397e56688?crop=entropy&cs=srgb&fm=jpg&q=80&w=1200&fit=crop&ixlib=rb-4.1.0",
 };
 
 export const STATS = [
@@ -116,21 +126,25 @@ export const ACTIVITIES = [
     icon: Droplets,
     title: "River Cleanliness",
     text: "Weekly cleaning drives keep the sacred Tapi and her ghats pure for worship and wildlife.",
+    image: IMAGES.community,
   },
   {
     icon: HeartPulse,
     title: "Blood Donation Camps",
     text: "Regular camps in partnership with hospitals — turning devotion into lives saved.",
+    image: IMAGES.bloodDonation,
   },
   {
     icon: Trees,
     title: "Tree Plantation",
     text: "Native saplings planted along the riverbank and across the city to cool and heal the land.",
+    image: IMAGES.treePlantation,
   },
   {
     icon: LifeBuoy,
     title: "Disaster Relief",
     text: "Rapid, on-ground response with food, shelter and aid when floods and calamity strike.",
+    image: IMAGES.disasterRelief,
   },
 ];
 
@@ -160,9 +174,9 @@ export const EVENTS = [
 ];
 
 export const NEWS = [
-  { tag: "Recognition", title: "Trust honoured for river conservation work", excerpt: "Tapi Namastubhyam featured in leading publications for its dedication and service to the community.", date: "June 2026" },
-  { tag: "Milestone", title: "One year of unbroken daily aarti", excerpt: "365 evenings of collective prayer on the ghats — a growing family of devotees and volunteers.", date: "May 2026" },
-  { tag: "Ecology", title: "50,000 diyas, zero plastic", excerpt: "Our festival programme goes fully eco-friendly with clay diyas and natural offerings.", date: "April 2026" },
+  { tag: "Recognition", title: "Trust honoured for river conservation work", excerpt: "Tapi Namastubhyam featured in leading publications for its dedication and service to the community.", date: "June 2026", image: "https://mgx-backend-cdn.metadl.com/generate/images/345098/2026-07-14/spxecoqcaizq/event-temple-festival.png" },
+  { tag: "Milestone", title: "One year of unbroken daily aarti", excerpt: "365 evenings of collective prayer on the ghats — a growing family of devotees and volunteers.", date: "May 2026", image: "https://mgx-backend-cdn.metadl.com/generate/images/345098/2026-07-14/spxec5acai2a/gallery-mass-aarti-diyas.png" },
+  { tag: "Ecology", title: "50,000 diyas, zero plastic", excerpt: "Our festival programme goes fully eco-friendly with clay diyas and natural offerings.", date: "April 2026", image: "https://mgx-backend-cdn.metadl.com/generate/images/345098/2026-07-14/spxedkacaiza/activity-community-kitchen.png" },
 ];
 
 export const TESTIMONIALS = [

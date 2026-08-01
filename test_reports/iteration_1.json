@@ -1,0 +1,24 @@
+{
+  "summary": "Frontend-only regression on Tapi Namastubhyam site. Verified images are now rendered in Hero, Activities (4), Heritage (aerial), News (3 thumbnails), and Gallery (6 tiles + lightbox opens). All images have naturalWidth > 0 (no broken assets). Also validated core booking flow at /book/aarti and donation flow at /donate — both reach their success screens with reference IDs.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Hero", "issues": ["Overlay gradient (paper via paper/70) is fairly heavy on the left half, which slightly desaturates the hero photograph. Still readable and intentional, but the photograph is more visible on the right side than the left. Non-blocking."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Hero uses only one <img> plus stacked gradient overlays — z-index fix is working; hero image now visibly renders (sunset ghat scene).",
+    "All images observed loading from Unsplash or mgx-backend-cdn.metadl.com — ensure these external hosts remain accessible in production; consider adding loading=\"lazy\" and width/height attrs for better CLS if not already present."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Frontend flows verified via Playwright with reduced-motion emulation (bypasses Lenis). Hero image confirmed via evaluated naturalWidth=6000. Booking date picker exposes a react-day-picker grid; select day via [role=gridcell] button:not([disabled]). Donate page did not expose [data-testid^='donate-preset'] on this run but submission worked with default preset selection — main agent may want to double-check preset testids exist.",
+  "rca of the issue": "N/A — reported bug (missing hero image + other section images) is resolved. Root cause was hero parallax layer using -z-10 behind an opaque paper background making the image invisible; changing to z-0 with translucent gradient overlays exposes the photo. Section images were added to data.js and rendered in Activities, Heritage, and News."
+}

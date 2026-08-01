@@ -160,22 +160,29 @@ export const News = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.7, delay: i * 0.12 }}
-            className="group rounded-3xl bg-white border border-border/70 p-8 hover:-translate-y-1 hover:shadow-lift transition-[transform,box-shadow] duration-500"
+            className="group overflow-hidden rounded-3xl bg-white border border-border/70 hover:-translate-y-1 hover:shadow-lift transition-[transform,box-shadow] duration-500"
             data-testid={`news-${i}`}
           >
-            <div className="flex items-center justify-between">
-              <span className="rounded-full bg-saffron/10 text-saffron text-xs font-semibold px-3 py-1 uppercase tracking-wider">
+            <div className="relative h-48 overflow-hidden">
+              <img
+                src={n.image}
+                alt={n.title}
+                className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <span className="absolute top-4 left-4 rounded-full bg-white/90 backdrop-blur-sm text-saffron text-xs font-semibold px-3 py-1 uppercase tracking-wider">
                 {n.tag}
               </span>
-              <span className="text-xs text-ink-soft">{n.date}</span>
             </div>
-            <h3 className="mt-5 font-display text-2xl leading-snug text-ink group-hover:text-saffron transition-colors">
-              {n.title}
-            </h3>
-            <p className="mt-3 text-ink-soft leading-relaxed">{n.excerpt}</p>
-            <span className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-ink group-hover:text-saffron transition-colors">
-              Read more <ArrowUpRight className="h-4 w-4" />
-            </span>
+            <div className="p-8">
+              <span className="text-xs text-ink-soft">{n.date}</span>
+              <h3 className="mt-2 font-display text-2xl leading-snug text-ink group-hover:text-saffron transition-colors">
+                {n.title}
+              </h3>
+              <p className="mt-3 text-ink-soft leading-relaxed">{n.excerpt}</p>
+              <span className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-ink group-hover:text-saffron transition-colors">
+                Read more <ArrowUpRight className="h-4 w-4" />
+              </span>
+            </div>
           </motion.article>
         ))}
       </div>

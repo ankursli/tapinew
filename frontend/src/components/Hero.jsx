@@ -58,21 +58,21 @@ export const Hero = () => {
 
       <motion.div
         style={{ y: yText, opacity }}
-        className="relative z-10 mx-auto max-w-7xl px-5 md:px-8 pt-36 md:pt-44 pb-16 min-h-screen flex flex-col justify-center"
+        className="relative z-10 mx-auto max-w-7xl px-5 md:px-8 pt-24 md:pt-28 pb-12 min-h-screen flex flex-col justify-center"
       >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="mb-6"
+          className="mb-5"
         >
-          <span className="inline-flex items-center gap-2 rounded-full glass-card px-4 py-2 text-xs md:text-sm tracking-[0.22em] uppercase text-ink-soft">
+          <span className="inline-flex items-center gap-2 rounded-full glass-card px-4 py-1.5 text-xs md:text-sm tracking-[0.22em] uppercase text-ink-soft">
             <span className="h-2 w-2 rounded-full bg-saffron animate-pulse" />
             Surat • Since antiquity, reborn today
           </span>
         </motion.div>
 
-        <h1 className="font-display font-light text-ink text-6xl sm:text-7xl md:text-8xl lg:text-[8.5rem] leading-[0.92] tracking-tighter max-w-5xl">
+        <h1 className="font-display font-light text-ink text-5xl sm:text-6xl md:text-7xl lg:text-[5.75rem] leading-[0.95] tracking-tighter max-w-5xl">
           <MaskLine delay={0.25}>We bow to the</MaskLine>
           <MaskLine delay={0.4}>
             <span className="italic text-saffron">sacred</span> river
@@ -84,7 +84,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.85 }}
-          className="mt-8 max-w-xl text-lg md:text-xl text-ink-soft leading-relaxed"
+          className="mt-4 max-w-xl text-base md:text-lg text-ink-soft leading-relaxed"
         >
           Tapi Namastubhyam Charitable Trust keeps the daily aarti alive,
           cleans the sacred river, and serves the people of Surat — honouring
@@ -95,11 +95,11 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 1 }}
-          className="mt-10 flex flex-wrap items-center gap-4"
+          className="mt-6 flex flex-wrap items-center gap-4"
         >
           <Link
             to="/donate"
-            className="group inline-flex items-center gap-2 rounded-full bg-saffron px-7 py-4 text-white shadow-soft hover:bg-saffron-600 transition-colors duration-300"
+            className="group inline-flex items-center gap-2 rounded-full bg-saffron px-6 py-3.5 text-white shadow-soft hover:bg-saffron-600 transition-colors duration-300"
             data-testid="hero-donate"
           >
             <Heart className="h-5 w-5" />
@@ -108,7 +108,7 @@ export const Hero = () => {
           </Link>
           <Link
             to="/book/aarti"
-            className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white/50 px-7 py-4 text-ink hover:border-saffron hover:text-saffron transition-colors duration-300"
+            className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white/50 px-6 py-3.5 text-ink hover:border-saffron hover:text-saffron transition-colors duration-300"
             data-testid="hero-book"
           >
             Book a Tapi Aarti
@@ -120,11 +120,11 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.2 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-px rounded-3xl overflow-hidden glass-card max-w-3xl"
+          className="mt-7 grid grid-cols-2 md:grid-cols-4 gap-px rounded-3xl overflow-hidden glass-card max-w-3xl"
         >
           {STATS.map((s) => (
-            <div key={s.label} className="px-5 py-6 text-center">
-              <div className="font-display text-3xl md:text-4xl text-saffron">
+            <div key={s.label} className="px-5 py-3.5 text-center">
+              <div className="font-display text-2xl md:text-4xl text-saffron">
                 <Counter value={s.value} suffix={s.suffix} />
               </div>
               <div className="mt-1 text-xs md:text-sm text-ink-soft leading-snug">

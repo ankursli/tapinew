@@ -149,12 +149,12 @@ export const ACTIVITIES = [
 ];
 
 export const MEMBERS = [
-  { name: "Krunal Kamleshbhai Sailor", role: "President", photo: "" },
-  { name: "Mahima Krunal Sailor", role: "Vice President", photo: "" },
-  { name: "Mukund Kinkhabwala", role: "Treasurer", photo: "" },
-  { name: "Kalpesh Patel", role: "Secretary", photo: "" },
-  { name: "Ankur Ashokbhai Patel", role: "Secretary", photo: "" },
-  { name: "Ankur Umedbhai Patel", role: "Trustee Member", photo: "" },
+  { name: "Krunal Kamleshbhai Sailor", role: "President", photo: "/members/krunal.jpg", featured: true, bio: "Founder-president guiding the trust's mission to preserve the sacred Tapi and unite Surat in daily devotion and service." },
+  { name: "Mahima Krunal Sailor", role: "Vice President", photo: "/members/mahima.jpg" },
+  { name: "Mukund Kinkhabwala", role: "Treasurer", photo: "/members/mukund.jpg" },
+  { name: "Kalpesh Patel", role: "Secretary", photo: "/members/kalpesh.jpg" },
+  { name: "Ankur Ashokbhai Patel", role: "Secretary", photo: "/members/ankur-ashok.jpg" },
+  { name: "Ankur Umedbhai Patel", role: "Trustee Member", photo: "/members/ankur-umed.jpg" },
   { name: "Paresh Mistry", role: "Trustee Member", photo: "" },
 ];
 

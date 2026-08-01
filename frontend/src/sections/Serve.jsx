@@ -102,21 +102,23 @@ export const DailyAarti = () => (
       </div>
 
       <Reveal delay={0.1}>
-        <div className="glass rounded-3xl p-8 md:p-10 border border-white/10 bg-white/5">
-          <div className="text-sm uppercase tracking-[0.2em] text-white/50">
+        <div className="rounded-3xl p-8 md:p-10 border border-white/15 bg-ink/55 backdrop-blur-md shadow-lift">
+          <div className="text-sm uppercase tracking-[0.2em] text-gold">
             Daily Schedule
           </div>
-          <ul className="mt-6 divide-y divide-white/10">
+          <ul className="mt-6 divide-y divide-white/15">
             {DAILY_AARTI.schedule.map((s) => (
-              <li key={s.label} className="flex items-center justify-between py-4">
-                <span className="flex items-center gap-3 text-white/90">
-                  <Clock className="h-4 w-4 text-gold" /> {s.label}
+              <li key={s.label} className="flex items-center justify-between gap-4 py-4">
+                <span className="flex items-center gap-3 text-white text-base md:text-lg">
+                  <Clock className="h-5 w-5 text-gold shrink-0" /> {s.label}
                 </span>
-                <span className="font-display text-xl text-gold">{s.time}</span>
+                <span className="font-display text-xl md:text-2xl text-gold font-medium whitespace-nowrap">
+                  {s.time}
+                </span>
               </li>
             ))}
           </ul>
-          <p className="mt-6 text-sm text-white/50">
+          <p className="mt-6 text-sm text-white/70">
             Open to all devotees. No fee to attend — bring your prayers.
           </p>
         </div>

@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Heart, ChevronDown } from "lucide-react";
+import { ArrowRight, Heart, ChevronDown, Flame } from "lucide-react";
 import { TRUST, IMAGES, STATS } from "@/lib/data";
 import { Counter } from "@/components/primitives";
 import { EASE } from "@/lib/motion";
@@ -44,8 +44,8 @@ export const Hero = () => {
         className="absolute inset-0 z-0"
       >
         <img
-          src={IMAGES.heroRiver}
-          alt="The sacred Tapi river at sunrise"
+          src={IMAGES.aarti}
+          alt="Devotees performing the evening Tapi Aarti on the ghat"
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-paper via-paper/70 to-paper/10" />
@@ -68,16 +68,16 @@ export const Hero = () => {
         >
           <span className="inline-flex items-center gap-2 rounded-full glass-card px-4 py-1.5 text-xs md:text-sm tracking-[0.22em] uppercase text-ink-soft">
             <span className="h-2 w-2 rounded-full bg-saffron animate-pulse" />
-            Surat • Since antiquity, reborn today
+            Every evening on the Tapi ghat, Surat
           </span>
         </motion.div>
 
         <h1 className="font-display font-light text-ink text-5xl sm:text-6xl md:text-7xl lg:text-[5.75rem] leading-[0.95] tracking-tighter max-w-5xl">
-          <MaskLine delay={0.25}>We bow to the</MaskLine>
+          <MaskLine delay={0.25}>The sacred</MaskLine>
           <MaskLine delay={0.4}>
-            <span className="italic text-saffron">sacred</span> river
+            <span className="italic text-saffron">Tapi Aarti</span>,
           </MaskLine>
-          <MaskLine delay={0.55}>Tapi.</MaskLine>
+          <MaskLine delay={0.55}>every evening.</MaskLine>
         </h1>
 
         <motion.p
@@ -86,9 +86,9 @@ export const Hero = () => {
           transition={{ duration: 0.9, delay: 0.85 }}
           className="mt-4 max-w-xl text-base md:text-lg text-ink-soft leading-relaxed"
         >
-          Tapi Namastubhyam Charitable Trust keeps the daily aarti alive,
-          cleans the sacred river, and serves the people of Surat — honouring
-          Surya Putri for the generations to come.
+          As the sun sets over Surat, join thousands of devotees on the ghat for
+          the daily aarti of Maa Tapi — lamps afloat, conches sounding, the river
+          aglow. Book your seva or sponsor an aarti in your family's name.
         </motion.p>
 
         <motion.div
@@ -98,20 +98,21 @@ export const Hero = () => {
           className="mt-6 flex flex-wrap items-center gap-4"
         >
           <Link
-            to="/donate"
+            to="/book/aarti"
             className="group inline-flex items-center gap-2 rounded-full bg-saffron px-6 py-3.5 text-white shadow-soft hover:bg-saffron-600 transition-colors duration-300"
+            data-testid="hero-book"
+          >
+            <Flame className="h-5 w-5" />
+            Book a Tapi Aarti
+            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
+          <Link
+            to="/donate"
+            className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white/50 px-6 py-3.5 text-ink hover:border-saffron hover:text-saffron transition-colors duration-300"
             data-testid="hero-donate"
           >
             <Heart className="h-5 w-5" />
             Donate to the Trust
-            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
-          <Link
-            to="/book/aarti"
-            className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white/50 px-6 py-3.5 text-ink hover:border-saffron hover:text-saffron transition-colors duration-300"
-            data-testid="hero-book"
-          >
-            Book a Tapi Aarti
           </Link>
         </motion.div>
 

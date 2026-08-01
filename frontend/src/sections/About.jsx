@@ -26,8 +26,8 @@ export const About = () => (
             <div className="relative">
               <div className="clip-arch overflow-hidden shadow-lift">
                 <img
-                  src={IMAGES.aarti}
-                  alt="Devotees at the Tapi Aarti"
+                  src={IMAGES.heroRiver}
+                  alt="The sacred Tapi river at sunrise in Surat"
                   className="w-full h-[440px] md:h-[560px] object-cover"
                 />
               </div>

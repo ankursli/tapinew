@@ -12,7 +12,34 @@ module.exports = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)'
       },
+      fontFamily: {
+        display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        body: ['Outfit', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        deva: ['"Noto Serif Devanagari"', '"Noto Sans Gujarati"', 'serif'],
+      },
       colors: {
+        saffron: {
+          DEFAULT: '#EA6A16',
+          50: '#FDF3EA',
+          100: '#FADFC7',
+          500: '#EA6A16',
+          600: '#C9560F',
+          700: '#9E430B',
+        },
+        river: {
+          DEFAULT: '#29ABE2',
+          50: '#EAF7FD',
+          100: '#C7EAF8',
+          500: '#29ABE2',
+          600: '#1C86B4',
+        },
+        gold: '#D4AF37',
+        sand: '#E8DCC4',
+        ink: {
+          DEFAULT: '#1A1614',
+          soft: '#5C544D',
+        },
+        paper: '#FDFBF7',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

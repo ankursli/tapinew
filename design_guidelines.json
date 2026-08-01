@@ -1,0 +1,178 @@
+{
+  "theme": "light",
+  "typography": {
+    "primary_font": "Cormorant Garamond",
+    "secondary_font": "Outfit",
+    "hierarchy": {
+      "h1": "text-5xl md:text-7xl tracking-tighter leading-[1.1] font-light",
+      "h2": "text-4xl md:text-5xl tracking-tight leading-tight",
+      "h3": "text-2xl md:text-3xl leading-snug",
+      "h4": "text-xl md:text-2xl font-medium",
+      "body": "text-base md:text-lg leading-relaxed text-[#5C544D]",
+      "overline": "text-sm uppercase tracking-[0.2em] font-semibold text-[#EA6A16]"
+    },
+    "rules": "Avoid Inter/Space Grotesk. Headings must use Cormorant Garamond (Serif) to reflect spiritual heritage, body uses Outfit (Sans) for modern legibility. Use tight letter spacing for headings."
+  },
+  "colors": {
+    "archetype": "Organic & Earthy / Premium Heritage",
+    "background": {
+      "primary": "#FDFBF7",
+      "secondary": "#F4EFE6",
+      "glass": "rgba(253, 251, 247, 0.75)"
+    },
+    "text": {
+      "primary": "#1A1614",
+      "secondary": "#5C544D",
+      "accent": "#EA6A16"
+    },
+    "brand": {
+      "saffron": "#EA6A16",
+      "river_blue": "#29ABE2",
+      "gold": "#D4AF37",
+      "sand": "#E8DCC4"
+    },
+    "rules": "Light UI only. No harsh blacks (use #1A1614). Use warm saffron (#EA6A16) for primary CTAs and highlights. Use river blue (#29ABE2) sparingly for subtle aquatic accents."
+  },
+  "visual_enhancers": {
+    "glassmorphism": "Light glassmorphism: backdrop-blur-xl bg-[#FDFBF7]/70 border border-white/60 shadow-[0_8px_32px_rgba(26,22,20,0.04)]",
+    "cards": "Soft rounded corners (rounded-3xl), subtle ambient shadows shadow-[0_8px_30px_rgba(234,106,22,0.04)]",
+    "borders": "1px solid border-[#EA6A16]/10 or border-white/60",
+    "images": "Clipped photo frames (arched tops, pill shapes, or rounded-3xl). Use a subtle radial-gradient spotlight behind key hero images to create depth."
+  },
+  "component_strategy": {
+    "marketing_sections": "Custom HTML/Tailwind for asymmetrical Bento grids, overlapping elements, generous spacing. Avoid generic Bootstrap-style columns.",
+    "interactive_components": "Shadcn UI (Buttons, Accordions, Forms, Dialogs, Cards) heavily customized to strip the Vercel look. Apply rounded-full to buttons and rounded-3xl to cards.",
+    "icons": "lucide-react for UI, thin stroke-width (1.5).",
+    "marquees": "react-fast-marquee for slow editorial ribbon with Cormorant Garamond text, separated by small dots or diyas."
+  },
+  "grids": {
+    "marketing": "Asymmetrical 'Bento' or 'Tetris' grid. Wide gaps (gap-8 to gap-12). Never fill 100% perfectly. Leave negative space for breathing room.",
+    "members": "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10",
+    "activities": "grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+  },
+  "layouts": {
+    "spacing": "Generous spacing. Use p-8, p-12, py-24, py-32 to give the layout an airy, premium feel.",
+    "alignment": "Mobile-first. Left-aligned text for better readability, centered only for deliberate artistic impact in hero or blockquotes."
+  },
+  "motion": {
+    "libraries": ["framer-motion", "lenis"],
+    "hero": "Signature on-load masked line-by-line text reveal using framer-motion (y: 100%, opacity: 0 -> y: 0, opacity: 1 inside a overflow-hidden container).",
+    "scroll": "Lenis for smooth momentum scrolling. Framer-motion for scroll-reveals (fade-up, slight translate-y).",
+    "micro_interactions": "Hover states on cards (slight lift -translate-y-1, shadow increase), button hover (subtle scale 1.02 or color shift)."
+  },
+  "3d_libraries": {
+    "recommendation": "framer-motion (for 2.5D parallax)",
+    "usage": "Create a subtle parallax hero moment by layering text and image elements moving at different Y speeds on scroll using Framer Motion's useScroll and useTransform. No heavy WebGL needed to maintain elegant cleanliness."
+  },
+  "accessibility": {
+    "contrast": "Ensure text over images has sufficient contrast using gradient overlays (bg-gradient-to-t from-[#1A1614]/70 to-transparent).",
+    "motion": "Respect prefers-reduced-motion for animations.",
+    "testing": "All interactive elements MUST include data-testid attribute."
+  },
+  "media": {
+    "hero": [
+      {
+        "url": "https://images.unsplash.com/photo-1755781367841-224a84f4a0bc?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MDV8MHwxfHNlYXJjaHwzfHxIaW5kdSUyMEFhcnRpJTIwZGl5YXMlMjByaXZlciUyMHN1bnNldHxlbnwwfHx8fDE3ODU1NjkwMjJ8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Steps leading to a river at sunrise with boats (Tapi River vibe)",
+        "category": "Hero Parallax Background"
+      },
+      {
+         "url": "https://images.unsplash.com/photo-1750759213152-cc80468c21a6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MDV8MHwxfHNlYXJjaHwxfHxIaW5kdSUyMEFhcnRpJTIwZGl5YXMlMjByaXZlciUyMHN1bnNldHxlbnwwfHx8fDE3ODU1NjkwMjJ8MA&ixlib=rb-4.1.0&q=85",
+         "description": "Sunset ceremony over the river with a large crowd",
+         "category": "Hero / Aarti Booking Section"
+      }
+    ],
+    "heritage": [
+      {
+        "url": "https://images.unsplash.com/photo-1706631519116-6607d09107b2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHw0fHxJbmRpYW4lMjByaXZlciUyMGhlcml0YWdlfGVufDB8fHx8MTc4NTU2OTAyMnww&ixlib=rb-4.1.0&q=85",
+        "description": "River heritage bridge",
+        "category": "History & Heritage timeline"
+      }
+    ],
+    "community": [
+      {
+        "url": "https://images.unsplash.com/photo-1758599668932-484f54cdf48f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTV8MHwxfHNlYXJjaHwzfHxjb21tdW5pdHklMjByaXZlciUyMGNsZWFuJTIwdXAlMjBuYXR1cmV8ZW58MHx8fHwxNzg1NTY5MDIyfDA&ixlib=rb-4.1.0&q=85",
+        "description": "Volunteers collecting trash along a riverbank",
+        "category": "Community Activities"
+      }
+    ],
+    "members": [
+      {
+        "url": "https://tapiaarti.com/KrunalSailor.png",
+        "name": "Krunal Kamleshbhai Sailor",
+        "role": "President",
+        "category": "Trust Members"
+      },
+      {
+        "url": "https://tapiaarti.com/MahimaSailor1.jpg",
+        "name": "Mahima Krunal Sailor",
+        "role": "Vice President",
+        "category": "Trust Members"
+      },
+      {
+        "url": "https://tapiaarti.com/MukundbhaiKinkhabwala.jpeg",
+        "name": "Mukund Kinkhabwala",
+        "role": "Treasurer",
+        "category": "Trust Members"
+      },
+      {
+        "url": "https://tapiaarti.com/KalpeshPatel.jpeg",
+        "name": "Kalpesh Patel",
+        "role": "Secretary",
+        "category": "Trust Members"
+      },
+      {
+        "url": "https://tapiaarti.com/AnkurAshokbhaiPatel.jpeg",
+        "name": "Ankur Ashokbhai Patel",
+        "role": "Secretary",
+        "category": "Trust Members"
+      },
+      {
+        "url": "https://tapiaarti.com/AnkurUmedbhaiPatel.jpeg",
+        "name": "Ankur Umedbhai Patel",
+        "role": "Trustee Member",
+        "category": "Trust Members"
+      }
+    ],
+    "gallery": [
+      {
+        "url": "https://mgx-backend-cdn.metadl.com/generate/images/345098/2026-07-14/spxeaiycai2q/hero-tapi-aarti-ceremony-sunset.png",
+        "description": "Evening Aarti Ceremony",
+        "category": "Gallery"
+      },
+      {
+        "url": "https://mgx-backend-cdn.metadl.com/generate/images/345098/2026-07-14/spxeaxqcai2a/tapi-river-aerial-morning.png",
+        "description": "Sacred Tapi River Aerial",
+        "category": "Gallery"
+      },
+      {
+        "url": "https://mgx-backend-cdn.metadl.com/generate/images/345098/2026-07-14/spxebeqcaiyq/activity-river-cleaning-volunteers.png",
+        "description": "River Cleaning Volunteers",
+        "category": "Gallery"
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "You are building a premium, award-worthy React application. Use Lenis for smooth momentum scrolling.",
+    "Implement numbered manifesto chapters for the Vision/Mission/History section.",
+    "Create a slow editorial marquee using react-fast-marquee showing spiritual/brand keywords.",
+    "Design a Historical Timeline component using Framer Motion scroll reveals.",
+    "Build dummy payment forms for Aarti/Pooja booking and Donations. Use customized Shadcn UI components.",
+    "Create a sticky navigation bar with glassmorphism and a floating 'Donate' button.",
+    "The Trust members section must display the exact 6 member images provided in the media object. For 'Paresh Mistry' (who has no image), use an Avatar component with initials 'PM'.",
+    "Use Apple-level cleanliness: abundant whitespace, large elegant typography, minimal harsh borders.",
+    "All interactive elements must have data-testid attributes for testing."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "Do not converge toward generic outputs. Use asymmetrical layouts and overlapping elements.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur). NEVER use completely transparent backgrounds where content scrolls underneath.",
+    "Do not apply universal transition (e.g. transition: all). Target specific properties to prevent breaking framer-motion transforms.",
+    "Do not center align the App container (no .App { text-align: center; }).",
+    "Every interaction needs micro-animations - hover states, transitions.",
+    "Use 2-3x more spacing than typical defaults.",
+    "Never use placeholder URLs (like via.placeholder.com). Use the provided image URLs.",
+    "Use sonner for toasts notifications.",
+    "Install required dependencies: framer-motion, @studio-freight/lenis (or lenis), react-fast-marquee, lucide-react."
+  ]
+}

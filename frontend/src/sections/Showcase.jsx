@@ -1,24 +1,18 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Calendar, MapPin, Clock, ArrowUpRight, FileDown, ScrollText } from "lucide-react";
-import { GALLERY, EVENTS, NEWS, SHLOK } from "@/lib/data";
+import { GALLERY, GALLERY_CATEGORIES, EVENTS, NEWS, SHLOK } from "@/lib/data";
 import { Overline, Reveal } from "@/components/primitives";
-
-const spans = [
-  "sm:col-span-2 sm:row-span-2",
-  "",
-  "",
-  "sm:row-span-2",
-  "sm:col-span-2",
-  "",
-];
 
 export const Gallery = () => {
   const [active, setActive] = useState(null);
+  const [filter, setFilter] = useState("All");
+  const items = filter === "All" ? GALLERY : GALLERY.filter((g) => g.category === filter);
+
   return (
     <section id="gallery" className="relative py-24 md:py-36 bg-sand/50" data-testid="gallery">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
             <Reveal>
               <Overline>Moments on the ghat</Overline>
@@ -29,32 +23,65 @@ export const Gallery = () => {
               </h2>
             </Reveal>
           </div>
+
+          {/* Category filter tabs */}
+          <Reveal delay={0.1}>
+            <div className="flex flex-wrap gap-2" data-testid="gallery-filters">
+              {GALLERY_CATEGORIES.map((cat) => {
+                const on = filter === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => setFilter(cat)}
+                    data-testid={`gallery-filter-${cat.toLowerCase()}`}
+                    className={`px-5 py-2 rounded-full text-sm transition-colors duration-300 ${
+                      on
+                        ? "bg-saffron text-white shadow-soft"
+                        : "bg-white border border-border/70 text-ink-soft hover:border-saffron hover:text-saffron"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                );
+              })}
+            </div>
+          </Reveal>
         </div>
 
-        <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 auto-rows-[180px] md:auto-rows-[220px] gap-4">
-          {GALLERY.map((g, i) => (
-            <motion.button
-              key={i}
-              onClick={() => setActive(g)}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: (i % 4) * 0.08 }}
-              className={`group relative overflow-hidden rounded-2xl ${spans[i % spans.length]}`}
-              data-testid={`gallery-item-${i}`}
-            >
-              <img
-                src={g.url}
-                alt={g.caption}
-                className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <span className="absolute bottom-3 left-4 text-white text-sm font-medium opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
-                {g.caption}
-              </span>
-            </motion.button>
-          ))}
-        </div>
+        <motion.div
+          layout
+          className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 auto-rows-[180px] md:auto-rows-[240px] gap-4"
+        >
+          <AnimatePresence mode="popLayout">
+            {items.map((g, i) => (
+              <motion.button
+                key={g.url}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.45, delay: (i % 4) * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                onClick={() => setActive(g)}
+                className="group relative overflow-hidden rounded-2xl bg-sand"
+                data-testid={`gallery-item-${i}`}
+              >
+                <img
+                  src={g.url}
+                  alt={g.caption}
+                  loading="lazy"
+                  className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <span className="absolute top-3 left-3 rounded-full bg-white/85 backdrop-blur-sm text-saffron text-[10px] font-semibold px-2.5 py-1 uppercase tracking-wider">
+                  {g.category}
+                </span>
+                <span className="absolute bottom-3 left-4 right-4 text-white text-sm font-medium opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
+                  {g.caption}
+                </span>
+              </motion.button>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
 
       <AnimatePresence>

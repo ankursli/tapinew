@@ -158,13 +158,30 @@ export const MEMBERS = [
   { name: "Paresh Mistry", role: "Trustee Member", photo: "" },
 ];
 
+export const GALLERY_CATEGORIES = ["All", "River", "Aarti", "Activities", "Festivals"];
+
+const U = "?crop=entropy&cs=srgb&fm=jpg&q=80&w=1200&fit=crop&ixlib=rb-4.1.0";
+
 export const GALLERY = [
-  { url: "https://mgx-backend-cdn.metadl.com/generate/images/345098/2026-07-14/spxeaiycai2q/hero-tapi-aarti-ceremony-sunset.png", caption: "Evening Tapi Aarti" },
-  { url: "https://mgx-backend-cdn.metadl.com/generate/images/345098/2026-07-14/spxeaxqcai2a/tapi-river-aerial-morning.png", caption: "The sacred Tapi at dawn" },
-  { url: "https://mgx-backend-cdn.metadl.com/generate/images/345098/2026-07-14/spxebeqcaiyq/activity-river-cleaning-volunteers.png", caption: "River cleaning drive" },
-  { url: "https://mgx-backend-cdn.metadl.com/generate/images/345098/2026-07-14/spxec5acai2a/gallery-mass-aarti-diyas.png", caption: "A thousand diyas" },
-  { url: "https://mgx-backend-cdn.metadl.com/generate/images/345098/2026-07-14/spxecoqcaizq/event-temple-festival.png", caption: "Temple festival" },
-  { url: "https://mgx-backend-cdn.metadl.com/generate/images/345098/2026-07-14/spxedkacaiza/activity-community-kitchen.png", caption: "Community kitchen" },
+  // River
+  { url: "https://mgx-backend-cdn.metadl.com/generate/images/345098/2026-07-14/spxeaxqcai2a/tapi-river-aerial-morning.png", caption: "The sacred Tapi at dawn", category: "River" },
+  { url: IMAGES.heroRiver, caption: "River steps at sunrise", category: "River" },
+  { url: IMAGES.heritage, caption: "The Tapi through Surat", category: "River" },
+  // Aarti
+  { url: "https://mgx-backend-cdn.metadl.com/generate/images/345098/2026-07-14/spxeaiycai2q/hero-tapi-aarti-ceremony-sunset.png", caption: "Evening Tapi Aarti", category: "Aarti" },
+  { url: IMAGES.aarti, caption: "Sunset aarti on the ghat", category: "Aarti" },
+  { url: "https://mgx-backend-cdn.metadl.com/generate/images/345098/2026-07-14/spxec5acai2a/gallery-mass-aarti-diyas.png", caption: "A thousand diyas", category: "Aarti" },
+  { url: "https://images.unsplash.com/photo-1712510817140-917938f92e5b" + U, caption: "Lamps of devotion", category: "Aarti" },
+  // Activities
+  { url: IMAGES.community, caption: "River cleaning drive", category: "Activities" },
+  { url: IMAGES.treePlantation, caption: "Tree plantation", category: "Activities" },
+  { url: IMAGES.bloodDonation, caption: "Blood donation camp", category: "Activities" },
+  { url: "https://mgx-backend-cdn.metadl.com/generate/images/345098/2026-07-14/spxedkacaiza/activity-community-kitchen.png", caption: "Community kitchen", category: "Activities" },
+  // Festivals
+  { url: "https://mgx-backend-cdn.metadl.com/generate/images/345098/2026-07-14/spxecoqcaizq/event-temple-festival.png", caption: "Temple festival", category: "Festivals" },
+  { url: "https://images.unsplash.com/photo-1605292356183-a77d0a9c9d1d" + U, caption: "Festival of lamps", category: "Festivals" },
+  { url: "https://images.unsplash.com/photo-1541955208104-805851060644" + U, caption: "Diwali celebrations", category: "Festivals" },
+  { url: "https://images.unsplash.com/photo-1669304944449-4a1dc72cada4" + U, caption: "A festival gathering", category: "Festivals" },
 ];
 
 export const EVENTS = [

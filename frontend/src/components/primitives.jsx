@@ -7,7 +7,6 @@ export const Overline = ({ children, className = "" }) => (
   <span
     className={`inline-flex items-center gap-2 text-xs md:text-sm uppercase tracking-[0.28em] font-semibold text-saffron ${className}`}
   >
-    <span className="h-px w-6 bg-saffron/50" />
     {children}
   </span>
 );
@@ -82,8 +81,12 @@ export const Counter = ({ value, suffix = "", duration = 1800 }) => {
 };
 
 // Small decorative diya / flame divider
-export const DiyaDivider = ({ className = "" }) => (
-  <div className={`flex items-center justify-center gap-3 ${className}`}>
+export const DiyaDivider = ({ className = "", align = "center" }) => (
+  <div
+    className={`flex items-center gap-3 my-3 ${
+      align === "left" ? "justify-start" : "justify-center"
+    } ${className}`}
+  >
     <span className="h-px w-16 bg-gradient-to-r from-transparent to-saffron/40" />
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="text-saffron">
       <path

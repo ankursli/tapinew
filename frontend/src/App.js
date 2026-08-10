@@ -12,6 +12,7 @@ import { Navbar, FloatingDonate } from "@/components/Navbar";
 import Home from "@/pages/Home";
 import BookingPage from "@/pages/BookingPage";
 import DonatePage from "@/pages/DonatePage";
+import { LanguageProvider } from "@/lib/i18n";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -23,25 +24,27 @@ const ScrollToTop = () => {
 
 function App() {
   return (
-    <div className="App bg-paper min-h-screen">
-      <BrowserRouter>
-        <SmoothScroll>
-          <ScrollToTop />
-          <Navbar />
-          <FloatingDonate />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/book/:type" element={<BookingPage />} />
-            <Route path="/donate" element={<DonatePage />} />
-          </Routes>
-          <Toaster
-            position="top-center"
-            richColors
-            toastOptions={{ style: { fontFamily: "Outfit, sans-serif" } }}
-          />
-        </SmoothScroll>
-      </BrowserRouter>
-    </div>
+    <LanguageProvider>
+      <div className="App bg-paper min-h-screen">
+        <BrowserRouter>
+          <SmoothScroll>
+            <ScrollToTop />
+            <Navbar />
+            <FloatingDonate />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/book/:type" element={<BookingPage />} />
+              <Route path="/donate" element={<DonatePage />} />
+            </Routes>
+            <Toaster
+              position="top-center"
+              richColors
+              toastOptions={{ style: { fontFamily: "Outfit, sans-serif" } }}
+            />
+          </SmoothScroll>
+        </BrowserRouter>
+      </div>
+    </LanguageProvider>
   );
 }
 

@@ -8,7 +8,7 @@ export const TRUST = {
   shortName: "Tapi Namastubhyam",
   tagline: "तापी नमस्तुभ्यम्",
   taglineEn: "We bow to you, O sacred Tapi",
-  logo: "/tapi-logo.jpg",
+  logo: "/logo.png",
   phone: "+91 99133 63632",
   phoneRaw: "+919913363632",
   email: "tapinamastubhyam@gmail.com",
@@ -27,14 +27,23 @@ export const TRUST = {
 };
 
 export const IMAGES = {
+  hero: "/hero.jpg",
+  // heroRiver:
+  //   "https://images.unsplash.com/photo-1755781367841-224a84f4a0bc?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MDV8MHwxfHNlYXJjaHwzfHxIaW5kdSUyMEFhcnRpJTIwZGl5YXMlMjByaXZlciUyMHN1bnNldHxlbnwwfHx8fDE3ODU1NjkwMjJ8MA&ixlib=rb-4.1.0&q=85",
   heroRiver:
-    "https://images.unsplash.com/photo-1755781367841-224a84f4a0bc?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MDV8MHwxfHNlYXJjaHwzfHxIaW5kdSUyMEFhcnRpJTIwZGl5YXMlMjByaXZlciUyMHN1bnNldHxlbnwwfHx8fDE3ODU1NjkwMjJ8MA&ixlib=rb-4.1.0&q=85",
+    "/about.jpg",
   aarti:
     "https://images.unsplash.com/photo-1750759213152-cc80468c21a6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MDV8MHwxfHNlYXJjaHwxfHxIaW5kdSUyMEFhcnRpJTIwZGl5YXMlMjByaXZlciUyMHN1bnNldHxlbnwwfHx8fDE3ODU1NjkwMjJ8MA&ixlib=rb-4.1.0&q=85",
   heritage:
     "https://images.unsplash.com/photo-1706631519116-6607d09107b2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHw0fHxJbmRpYW4lMjByaXZlciUyMGhlcml0YWdlfGVufDB8fHx8MTc4NTU2OTAyMnww&ixlib=rb-4.1.0&q=85",
   community:
     "https://images.unsplash.com/photo-1758599668932-484f54cdf48f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTV8MHwxfHNlYXJjaHwzfHxjb21tdW5pdHklMjByaXZlciUyMGNsZWFuJTIwdXAlMjBuYXR1cmV8ZW58MHx8fHwxNzg1NTY5MDIyfDA&ixlib=rb-4.1.0&q=85",
+  ghatNight:
+    "/aarti-by-person.png",
+  // heritageSurat:
+  //   "https://images.unsplash.com/photo-1706631519116-6607d09107b2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHw0fHxJbmRpYW4lMjByaXZlciUyMGhlcml0YWdlfGVufDB8fHx8MTc4NTU2OTAyMnww&ixlib=rb-4.1.0&q=85",
+  heritageSurat:
+    "/tari-river-bridge.jpg",
   riverAerial:
     "https://mgx-backend-cdn.metadl.com/generate/images/345098/2026-07-14/spxeaxqcai2a/tapi-river-aerial-morning.png",
   diyas:

@@ -3,6 +3,27 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import { Menu, X, Heart } from "lucide-react";
 import { TRUST, NAV_LINKS } from "@/lib/data";
+import { useLanguage } from "@/lib/i18n";
+
+const languages = [
+  { code: 'en', label: 'EN', flag: '🇬🇧' },
+  { code: 'hi', label: 'हि', flag: '🇮🇳' },
+  { code: 'gu', label: 'ગુ', flag: '🇮🇳' },
+];
+
+const getNavLabel = (label, t) => {
+  const map = {
+    "About": "nav.about",
+    "The River": "nav.river",
+    "Heritage": "nav.heritage",
+    "Activities": "nav.activities",
+    "Aarti": "nav.aarti",
+    "Gallery": "nav.gallery",
+    "Contact": "nav.contact",
+  };
+  const key = map[label];
+  return key ? t(key) : label;
+};
 
 export const ScrollProgress = () => {
   const { scrollYProgress } = useScroll();
@@ -21,6 +42,7 @@ export const Navbar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const onHome = location.pathname === "/";
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -73,7 +95,7 @@ export const Navbar = () => {
                   className="px-3.5 py-2 text-sm text-ink-soft hover:text-saffron transition-colors duration-300 rounded-full"
                   data-testid={`nav-link-${l.label.toLowerCase()}`}
                 >
-                  {l.label}
+                  {getNavLabel(l.label, t)}
                 </a>
               ))}
             {!onHome && (
@@ -82,18 +104,36 @@ export const Navbar = () => {
                 className="px-3.5 py-2 text-sm text-ink-soft hover:text-saffron transition-colors"
                 data-testid="nav-home"
               >
-                Home
+                {t('nav.home')}
               </Link>
             )}
           </nav>
 
           <div className="hidden lg:flex items-center gap-3">
+            {/* Inline Language Selector */}
+            <div className="flex items-center bg-saffron/10 border border-saffron/20 rounded-full p-0.5 gap-0.5">
+              {languages.map((lang) => (
+                <button
+                  key={lang.code}
+                  onClick={() => setLanguage(lang.code)}
+                  className={`flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold transition-all duration-200 ${
+                    language === lang.code
+                      ? 'bg-saffron text-white shadow-sm'
+                      : 'text-saffron-700 hover:bg-saffron/20'
+                  }`}
+                >
+                  <span>{lang.flag}</span>
+                  <span>{lang.label}</span>
+                </button>
+              ))}
+            </div>
+
             <Link
               to="/book/aarti"
               className="px-4 py-2 text-sm rounded-full border border-saffron/30 text-ink hover:border-saffron hover:bg-saffron/5 transition-colors duration-300"
               data-testid="nav-book-aarti"
             >
-              Book Aarti
+              {t('nav.bookAarti')}
             </Link>
             <Link
               to="/donate"
@@ -101,18 +141,37 @@ export const Navbar = () => {
               data-testid="nav-donate"
             >
               <Heart className="h-4 w-4 group-hover:scale-110 transition-transform" />
-              Donate
+              {t('nav.donate')}
             </Link>
           </div>
 
-          <button
-            className="lg:hidden p-2 text-ink"
-            onClick={() => setOpen(true)}
-            aria-label="Open menu"
-            data-testid="nav-menu-open"
-          >
-            <Menu className="h-6 w-6" />
-          </button>
+          {/* Mobile language switch + Menu button */}
+          <div className="flex lg:hidden items-center gap-2">
+            <div className="flex items-center bg-saffron/10 border border-saffron/20 rounded-full p-0.5 gap-0.5">
+              {languages.map((lang) => (
+                <button
+                  key={lang.code}
+                  onClick={() => setLanguage(lang.code)}
+                  className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold transition-all duration-200 ${
+                    language === lang.code
+                      ? 'bg-saffron text-white shadow-sm'
+                      : 'text-saffron-755'
+                  }`}
+                >
+                  {lang.label}
+                </button>
+              ))}
+            </div>
+
+            <button
+              className="p-2 text-ink"
+              onClick={() => setOpen(true)}
+              aria-label="Open menu"
+              data-testid="nav-menu-open"
+            >
+              <Menu className="h-6 w-6" />
+            </button>
+          </div>
         </div>
       </motion.header>
 
@@ -155,7 +214,7 @@ export const Navbar = () => {
                     onClick={() => setOpen(false)}
                     className="py-3 text-2xl font-display text-ink border-b border-border/60 hover:text-saffron transition-colors"
                   >
-                    {l.label}
+                    {getNavLabel(l.label, t)}
                   </a>
                 ))}
               </nav>
@@ -165,14 +224,14 @@ export const Navbar = () => {
                   onClick={() => setOpen(false)}
                   className="text-center px-5 py-3 rounded-full border border-saffron/40 text-ink"
                 >
-                  Book Aarti / Pooja
+                  {t('nav.bookAarti')}
                 </Link>
                 <Link
                   to="/donate"
                   onClick={() => setOpen(false)}
                   className="text-center px-5 py-3 rounded-full bg-saffron text-white"
                 >
-                  Donate Now
+                  {t('nav.donate')}
                 </Link>
               </div>
             </motion.div>

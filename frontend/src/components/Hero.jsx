@@ -5,11 +5,12 @@ import { ArrowRight, Heart, ChevronDown, Flame } from "lucide-react";
 import { TRUST, IMAGES, STATS } from "@/lib/data";
 import { Counter } from "@/components/primitives";
 import { EASE } from "@/lib/motion";
+import { useLanguage } from "@/lib/i18n";
 
 const HEADLINE = ["We bow to the", "sacred", "river Tapi."];
 
 const MaskLine = ({ children, delay }) => (
-  <span className="block overflow-hidden">
+  <span className="block overflow-hidden pb-[0.18em] mb-[-0.18em]">
     <motion.span
       className="block"
       initial={{ y: "115%" }}
@@ -31,6 +32,14 @@ export const Hero = () => {
   const scaleImg = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
   const yText = useTransform(scrollYProgress, [0, 1], ["0%", "-35%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const { t } = useLanguage();
+
+  const translatedStats = [
+    { value: 2000, suffix: "+", label: t("stats.heritage") },
+    { value: 365, suffix: "", label: t("stats.aartis") },
+    { value: 48, suffix: "K", label: t("stats.diyas") },
+    { value: 12, suffix: "K", label: t("stats.lives") },
+  ];
 
   return (
     <section
@@ -44,12 +53,12 @@ export const Hero = () => {
         className="absolute inset-0 z-0"
       >
         <img
-          src={IMAGES.aarti}
+          src={IMAGES.hero}
           alt="Devotees performing the evening Tapi Aarti on the ghat"
           className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-paper via-paper/70 to-paper/10" />
-        <div className="absolute inset-0 bg-gradient-to-t from-paper via-paper/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-paper/90 via-paper/60 to-paper/10" />
+        {/* <div className="absolute inset-0 bg-gradient-to-t from-paper via-paper/10 to-transparent" /> */}
       </motion.div>
 
       {/* soft floating blobs */}
@@ -68,27 +77,25 @@ export const Hero = () => {
         >
           <span className="inline-flex items-center gap-2 rounded-full glass-card px-4 py-1.5 text-xs md:text-sm tracking-[0.22em] uppercase text-ink-soft">
             <span className="h-2 w-2 rounded-full bg-saffron animate-pulse" />
-            Every evening on the Tapi ghat, Surat
+            {t("hero.badge")}
           </span>
         </motion.div>
 
-        <h1 className="font-display font-light text-ink text-5xl sm:text-6xl md:text-7xl lg:text-[5.75rem] leading-[0.95] tracking-tighter max-w-5xl">
-          <MaskLine delay={0.25}>The sacred</MaskLine>
-          <MaskLine delay={0.4}>
-            <span className="italic text-saffron">Tapi Aarti</span>,
-          </MaskLine>
-          <MaskLine delay={0.55}>every evening.</MaskLine>
+        <h1 className="font-display font-light text-ink text-5xl sm:text-6xl md:text-7xl lg:text-[5.75rem] leading-[1.1] tracking-tighter max-w-5xl">
+          <MaskLine delay={0.25}>{t("hero.heading1")} <span className="italic text-saffron">{t("hero.heading2")},</span></MaskLine>
+          {/* <MaskLine delay={0.4}>
+            <span className="italic text-saffron">{t("hero.heading2")}</span>,
+          </MaskLine> */}
+          <MaskLine delay={0.55}>{t("hero.heading3")}</MaskLine>
         </h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.85 }}
-          className="mt-4 max-w-xl text-base md:text-lg text-ink-soft leading-relaxed"
+          className="mt-4 max-w-2xl text-base md:text-lg text-ink-soft leading-relaxed"
         >
-          As the sun sets over Surat, join thousands of devotees on the ghat for
-          the daily aarti of Maa Tapi — lamps afloat, conches sounding, the river
-          aglow. Book your seva or sponsor an aarti in your family's name.
+          {t("hero.description")}
         </motion.p>
 
         <motion.div
@@ -103,7 +110,7 @@ export const Hero = () => {
             data-testid="hero-book"
           >
             <Flame className="h-5 w-5" />
-            Book a Tapi Aarti
+            {t("hero.book")}
             <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </Link>
           <Link
@@ -112,7 +119,7 @@ export const Hero = () => {
             data-testid="hero-donate"
           >
             <Heart className="h-5 w-5" />
-            Donate to the Trust
+            {t("hero.donate")}
           </Link>
         </motion.div>
 
@@ -123,7 +130,7 @@ export const Hero = () => {
           transition={{ duration: 1, delay: 1.2 }}
           className="mt-7 grid grid-cols-2 md:grid-cols-4 gap-px rounded-3xl overflow-hidden glass-card max-w-3xl"
         >
-          {STATS.map((s) => (
+          {translatedStats.map((s) => (
             <div key={s.label} className="px-5 py-3.5 text-center">
               <div className="font-display text-2xl md:text-4xl text-saffron">
                 <Counter value={s.value} suffix={s.suffix} />
@@ -136,13 +143,15 @@ export const Hero = () => {
         </motion.div>
       </motion.div>
 
-      <motion.div
+      <motion.button
         style={{ opacity }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-ink-soft"
+        onClick={() => window.scrollTo({ top: window.innerHeight, behavior: "smooth" })}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 text-ink cursor-pointer hover:text-saffron transition-colors duration-300 bg-transparent border-none"
+        aria-label="Scroll down"
       >
         <span className="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
         <ChevronDown className="h-4 w-4 animate-bounce" />
-      </motion.div>
+      </motion.button>
     </section>
   );
 };

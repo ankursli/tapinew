@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
-import { MEMBERS, TESTIMONIALS } from "@/lib/data";
-import { Overline, Reveal } from "@/components/primitives";
+import { MEMBERS } from "@/lib/data";
+import { Overline, Reveal, DiyaDivider } from "@/components/primitives";
+import { useLanguage } from "@/lib/i18n";
 
 const initials = (name) =>
   name
@@ -30,6 +31,7 @@ const Monogram = ({ name, index, className = "" }) => (
 );
 
 export const Members = () => {
+  const { t } = useLanguage();
   const featured = MEMBERS.find((m) => m.featured) || MEMBERS[0];
   const rest = MEMBERS.filter((m) => m !== featured);
 
@@ -38,11 +40,12 @@ export const Members = () => {
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div className="text-center max-w-2xl mx-auto">
           <Reveal>
-            <Overline className="justify-center">The people behind the seva</Overline>
+            <Overline className="justify-center">{t("members.overline")}</Overline>
+            <DiyaDivider />
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="mt-6 font-display font-light text-4xl md:text-6xl tracking-tight text-ink">
-              Our Trust Members
+            <h2 className="mt-2 font-display font-light text-4xl md:text-6xl tracking-tight text-ink">
+              {t("members.title")}
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
@@ -72,7 +75,7 @@ export const Members = () => {
               <h3 className="mt-5 font-display text-4xl md:text-5xl text-ink">{featured.name}</h3>
               <p className="mt-2 text-sm uppercase tracking-[0.2em] text-saffron">{featured.role}</p>
               {featured.bio && (
-                <p className="mt-6 text-lg text-ink-soft leading-relaxed max-w-xl">{featured.bio}</p>
+                <p className="mt-6 text-lg text-ink-soft leading-relaxed max-w-xl">{t("members.presidentBio")}</p>
               )}
               <div className="mt-8 h-px w-24 bg-gradient-to-r from-saffron to-transparent" />
             </div>
@@ -111,41 +114,52 @@ export const Members = () => {
   );
 };
 
-export const Testimonials = () => (
-  <section className="relative py-24 md:py-36 bg-paper" data-testid="testimonials">
-    <div className="mx-auto max-w-7xl px-5 md:px-8">
-      <div className="max-w-2xl">
-        <Reveal>
-          <Overline>In their words</Overline>
-        </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="mt-6 font-display font-light text-4xl md:text-6xl tracking-tight text-ink">
-            Trusted by devotees & donors
-          </h2>
-        </Reveal>
-      </div>
+export const Testimonials = () => {
+  const { t } = useLanguage();
 
-      <div className="mt-14 grid md:grid-cols-3 gap-6">
-        {TESTIMONIALS.map((t, i) => (
-          <motion.figure
-            key={t.name}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-            className="relative rounded-3xl border border-border/70 bg-gradient-to-br from-white to-sand/40 p-8 flex flex-col"
-          >
-            <Quote className="h-9 w-9 text-saffron/25" fill="currentColor" />
-            <blockquote className="mt-4 font-display text-xl md:text-2xl leading-snug text-ink flex-1">
-              {t.quote}
-            </blockquote>
-            <figcaption className="mt-6 pt-6 border-t border-border/70">
-              <div className="font-medium text-ink">{t.name}</div>
-              <div className="text-sm text-ink-soft">{t.role}</div>
-            </figcaption>
-          </motion.figure>
-        ))}
+  const testimonials = [
+    { quote: t("test.q1"), name: t("test.n1"), role: t("test.r1") },
+    { quote: t("test.q2"), name: t("test.n2"), role: t("test.r2") },
+    { quote: t("test.q3"), name: t("test.n3"), role: t("test.r3") },
+  ];
+
+  return (
+    <section className="relative py-24 md:py-36 bg-paper" data-testid="testimonials">
+      <div className="mx-auto max-w-7xl px-5 md:px-8">
+        <div className="max-w-2xl">
+          <Reveal>
+            <Overline>{t("test.overline")}</Overline>
+            <DiyaDivider align="left" />
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h2 className="mt-2 font-display font-light text-4xl md:text-6xl tracking-tight text-ink">
+              {t("test.title")}
+            </h2>
+          </Reveal>
+        </div>
+
+        <div className="mt-14 grid md:grid-cols-3 gap-6">
+          {testimonials.map((t, i) => (
+            <motion.figure
+              key={t.name}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+              className="relative rounded-3xl border border-border/70 bg-gradient-to-br from-white to-sand/40 p-8 flex flex-col"
+            >
+              <Quote className="h-9 w-9 text-saffron/25" fill="currentColor" />
+              <blockquote className="mt-4 font-display text-xl md:text-2xl leading-snug text-ink flex-1">
+                {t.quote}
+              </blockquote>
+              <figcaption className="mt-6 pt-6 border-t border-border/70">
+                <div className="font-medium text-ink">{t.name}</div>
+                <div className="text-sm text-ink-soft">{t.role}</div>
+              </figcaption>
+            </motion.figure>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};

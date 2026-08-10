@@ -1,112 +1,131 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { TAPI_STORY, HERITAGE, TIMELINE, IMAGES } from "@/lib/data";
-import { Overline, Reveal } from "@/components/primitives";
+import { IMAGES } from "@/lib/data";
+import { Overline, Reveal, DiyaDivider } from "@/components/primitives";
 import { Check } from "lucide-react";
+import { useLanguage } from "@/lib/i18n";
 
-export const RiverStory = () => (
-  <section id="story" className="relative py-24 md:py-36 bg-sand/50" data-testid="story">
-    <div className="mx-auto max-w-7xl px-5 md:px-8 grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-      <div className="lg:col-span-6">
-        <Reveal>
-          <Overline>{TAPI_STORY.overline}</Overline>
+export const RiverStory = () => {
+  const { t } = useLanguage();
+  return (
+    <section id="story" className="relative py-24 md:py-36 bg-sand/50" data-testid="story">
+      <div className="mx-auto max-w-7xl px-5 md:px-8 grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+        <div className="lg:col-span-6">
+          <Reveal>
+            <Overline>{t("story.overline")}</Overline>
+            <DiyaDivider align="left" />
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h2 className="mt-2 font-display font-light text-4xl md:text-6xl leading-[1.15] tracking-tight text-ink">
+              {t("story.title")}
+            </h2>
+          </Reveal>
+          <div className="mt-8 space-y-6">
+            {[t("story.p1"), t("story.p2"), t("story.p3")].map((p, i) => (
+              <Reveal key={i} delay={0.1 + i * 0.05}>
+                <p className="text-lg text-ink-soft leading-relaxed max-w-xl">{p}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        <div className="lg:col-span-6 relative">
+          <Reveal delay={0.2}>
+            <div className="relative overflow-hidden rounded-3xl shadow-lift">
+              <img
+                src={IMAGES.ghatNight || IMAGES.aarti}
+                alt="Tapi river ghat illuminated at dusk"
+                className="w-full h-[520px] object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent" />
+              <div className="absolute bottom-8 left-8 right-8 text-white">
+                <p className="font-display italic text-2xl md:text-3xl text-white leading-snug">
+                  {t("story.quote")}
+                </p>
+                <p className="mt-3 text-sm text-gold tracking-widest uppercase">
+                  {t("story.quoteAuthor")}
+                </p>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export const Heritage = () => {
+  const { t } = useLanguage();
+  const points = [
+    t("heritage.point1"),
+    t("heritage.point2"),
+    t("heritage.point3"),
+  ];
+  return (
+    <section id="heritage" className="relative py-24 md:py-36 bg-paper" data-testid="heritage">
+      <div className="mx-auto max-w-7xl px-5 md:px-8">
+        <div className="max-w-3xl">
+          <Reveal>
+            <Overline>{t("heritage.overline")}</Overline>
+            <DiyaDivider align="left" />
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h2 className="mt-2 font-display font-light text-4xl md:text-6xl leading-[1.15] tracking-tight text-ink text-balance">
+              {t("heritage.title")}
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="mt-7 text-lg md:text-xl text-ink-soft leading-relaxed">
+              {t("heritage.body")}
+            </p>
+          </Reveal>
+        </div>
+
+        <Reveal delay={0.1}>
+          <div className="mt-12 relative overflow-hidden rounded-[2rem] shadow-lift">
+            <img
+              src={IMAGES.heritageSurat || IMAGES.heritage}
+              alt="Surat historic riverfront"
+              className="w-full h-[420px] md:h-[500px] object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-transparent flex items-center">
+              <div className="max-w-xl p-8 md:p-14 text-white">
+                <span className="text-xs uppercase tracking-[0.25em] text-gold font-semibold">
+                  {t("heritage.badge")}
+                </span>
+                <h3 className="mt-3 font-display text-3xl md:text-4xl">
+                  {t("heritage.bannerTitle")}
+                </h3>
+                <p className="mt-3 text-white/80 text-base md:text-lg">
+                  {t("heritage.bannerText")}
+                </p>
+              </div>
+            </div>
+          </div>
         </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="mt-6 font-display font-light text-4xl md:text-6xl leading-[1.05] tracking-tight text-ink">
-            {TAPI_STORY.title}
-          </h2>
-        </Reveal>
-        <div className="mt-8 space-y-6">
-          {TAPI_STORY.paragraphs.map((p, i) => (
-            <Reveal key={i} delay={0.1 + i * 0.05}>
-              <p className="text-lg text-ink-soft leading-relaxed max-w-xl">{p}</p>
+
+        <div className="mt-16 grid md:grid-cols-3 gap-8">
+          {points.map((point, i) => (
+            <Reveal key={i} delay={0.15 + i * 0.05}>
+              <div className="flex items-start gap-4 p-6 rounded-2xl bg-sand/60 border border-border/50">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-saffron/15 text-saffron font-semibold text-sm">
+                  <Check className="h-4 w-4" />
+                </span>
+                <p className="text-ink leading-snug">{point}</p>
+              </div>
             </Reveal>
           ))}
         </div>
       </div>
+    </section>
+  );
+};
 
-      <div className="lg:col-span-6 lg:sticky lg:top-28">
-        <Reveal delay={0.1}>
-          <div className="relative rounded-[2rem] overflow-hidden shadow-lift">
-            <img
-              src={IMAGES.heritage}
-              alt="Tapi river heritage"
-              className="w-full h-[420px] md:h-[520px] object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/50 to-transparent" />
-            <blockquote className="absolute bottom-0 p-8 md:p-10">
-              <p className="font-display italic text-2xl md:text-3xl text-white leading-snug">
-                “Her waters purify sins and grant moksha.”
-              </p>
-              <cite className="mt-3 block text-sm not-italic text-white/70">
-                — Skanda Purana & Agni Purana
-              </cite>
-            </blockquote>
-          </div>
-        </Reveal>
-      </div>
-    </div>
-  </section>
-);
-
-export const Heritage = () => (
-  <section id="heritage" className="relative py-24 md:py-36 bg-paper" data-testid="heritage">
-    <div className="mx-auto max-w-7xl px-5 md:px-8">
-      <div className="max-w-3xl">
-        <Reveal>
-          <Overline>{HERITAGE.overline}</Overline>
-        </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="mt-6 font-display font-light text-4xl md:text-6xl leading-[1.05] tracking-tight text-ink text-balance">
-            {HERITAGE.title}
-          </h2>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <p className="mt-7 text-lg md:text-xl text-ink-soft leading-relaxed">
-            {HERITAGE.body}
-          </p>
-        </Reveal>
-      </div>
-
-      <Reveal delay={0.1}>
-        <div className="mt-12 relative overflow-hidden rounded-[2rem] shadow-lift">
-          <img
-            src={IMAGES.riverAerial}
-            alt="Aerial view of the Tapi river flowing through Surat"
-            className="w-full h-[300px] md:h-[440px] object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent" />
-          <span className="absolute bottom-6 left-6 md:left-8 text-white font-display text-2xl md:text-3xl">
-            The Tapi, threading through Suryapur
-          </span>
-        </div>
-      </Reveal>
-
-      <div className="mt-12 grid md:grid-cols-3 gap-5">
-        {HERITAGE.points.map((point, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: i * 0.1 }}
-            className="flex items-start gap-4 rounded-2xl border border-border/70 bg-white p-6"
-          >
-            <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-saffron/10 text-saffron">
-              <Check className="h-4 w-4" strokeWidth={2.5} />
-            </span>
-            <p className="text-ink leading-snug">{point}</p>
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
-const TimelineRow = ({ item, index }) => {
+const TimelineRow = ({ item, index, innerRef }) => {
   const left = index % 2 === 0;
   return (
     <motion.div
+      ref={innerRef}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
@@ -135,36 +154,69 @@ const TimelineRow = ({ item, index }) => {
 };
 
 export const Timeline = () => {
-  const ref = useRef(null);
+  const { t } = useLanguage();
+  const containerRef = useRef(null);
+  const lastRowRef = useRef(null);
+  const [trackHeight, setTrackHeight] = useState(0);
+
+  useEffect(() => {
+    const updateHeight = () => {
+      if (lastRowRef.current) {
+        setTrackHeight(lastRowRef.current.offsetTop);
+      }
+    };
+    updateHeight();
+    window.addEventListener("resize", updateHeight);
+    return () => window.removeEventListener("resize", updateHeight);
+  }, []);
+
   const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start center", "end center"],
+    target: containerRef,
+    offset: ["start 70%", "end 50%"],
   });
-  const height = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+  const lineHeight = useTransform(scrollYProgress, [0, 1], [0, trackHeight]);
+
+  const timelineItems = [
+    { era: t("timeline.era1"), title: t("timeline.title1"), text: t("timeline.text1") },
+    { era: t("timeline.era2"), title: t("timeline.title2"), text: t("timeline.text2") },
+    { era: t("timeline.era3"), title: t("timeline.title3"), text: t("timeline.text3") },
+    { era: t("timeline.era4"), title: t("timeline.title4"), text: t("timeline.text4") },
+    { era: t("timeline.era5"), title: t("timeline.title5"), text: t("timeline.text5") },
+  ];
 
   return (
     <section className="relative py-24 md:py-36 bg-sand/50" data-testid="timeline">
       <div className="mx-auto max-w-5xl px-5 md:px-8">
         <div className="text-center max-w-2xl mx-auto">
           <Reveal>
-            <Overline className="justify-center">A river becomes a movement</Overline>
+            <Overline className="justify-center">{t("timeline.overline")}</Overline>
+            <DiyaDivider />
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="mt-6 font-display font-light text-4xl md:text-6xl tracking-tight text-ink">
-              From Tapi to Surat to the Trust
+            <h2 className="mt-2 font-display font-light text-4xl md:text-6xl tracking-tight text-ink">
+              {t("timeline.title")}
             </h2>
           </Reveal>
         </div>
 
-        <div ref={ref} className="relative mt-20 space-y-16 md:space-y-24">
+        <div ref={containerRef} className="relative mt-20 space-y-16 md:space-y-24">
           {/* track */}
-          <div className="absolute left-[0px] md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-px bg-border" />
-          <motion.div
-            style={{ height }}
-            className="absolute left-[0px] md:left-1/2 md:-translate-x-1/2 top-0 w-px bg-gradient-to-b from-saffron via-gold to-river origin-top"
+          <div
+            className="absolute left-[1px] md:left-1/2 md:-translate-x-1/2 top-[15px] w-px bg-border"
+            style={{ height: trackHeight ? `${trackHeight}px` : "calc(100% - 140px)" }}
           />
-          {TIMELINE.map((item, i) => (
-            <TimelineRow key={i} item={item} index={i} />
+          <motion.div
+            style={{ height: lineHeight }}
+            className="absolute left-[1px] md:left-1/2 md:-translate-x-1/2 top-[15px] w-px bg-gradient-to-b from-saffron via-gold to-river origin-top z-0"
+          />
+          {timelineItems.map((item, i) => (
+            <TimelineRow
+              key={i}
+              item={item}
+              index={i}
+              innerRef={i === timelineItems.length - 1 ? lastRowRef : null}
+            />
           ))}
         </div>
       </div>

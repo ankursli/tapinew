@@ -93,7 +93,7 @@ export const Contact = () => {
             <Overline>Reach the Trust</Overline>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="mt-6 font-display font-light text-4xl md:text-6xl leading-[1.05] tracking-tight text-ink">
+            <h2 className="mt-6 font-display font-light text-4xl md:text-6xl leading-[1.15] tracking-tight text-ink">
               Come to the ghat, or say hello
             </h2>
           </Reveal>

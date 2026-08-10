@@ -27,7 +27,7 @@ export const TRUST = {
 };
 
 export const IMAGES = {
-  hero: "/hero.jpg",
+  hero: "/hero.JPG",
   // heroRiver:
   //   "https://images.unsplash.com/photo-1755781367841-224a84f4a0bc?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MDV8MHwxfHNlYXJjaHwzfHxIaW5kdSUyMEFhcnRpJTIwZGl5YXMlMjByaXZlciUyMHN1bnNldHxlbnwwfHx8fDE3ODU1NjkwMjJ8MA&ixlib=rb-4.1.0&q=85",
   heroRiver:

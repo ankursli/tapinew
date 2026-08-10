@@ -155,7 +155,7 @@ export const Navbar = () => {
                   className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold transition-all duration-200 ${
                     language === lang.code
                       ? 'bg-saffron text-white shadow-sm'
-                      : 'text-saffron-755'
+                      : 'text-saffron-700'
                   }`}
                 >
                   {lang.label}

@@ -175,7 +175,7 @@ export const Timeline = () => {
     offset: ["start 70%", "end 50%"],
   });
 
-  const lineHeight = useTransform(scrollYProgress, [0, 1], [0, trackHeight]);
+  const lineHeight = useTransform(scrollYProgress, (val) => val * trackHeight);
 
   const timelineItems = [
     { era: t("timeline.era1"), title: t("timeline.title1"), text: t("timeline.text1") },

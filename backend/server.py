@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, APIRouter, HTTPException
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
@@ -13,12 +14,16 @@ from datetime import datetime, timezone
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
+db_name = os.environ.get('DB_NAME', 'tapinew')
 
-app = FastAPI(title="Tapi Namastubhyam Charitable Trust API")
-api_router = APIRouter(prefix="/api")
+client: Optional[AsyncIOMotorClient] = None
+
+def get_db():
+    global client
+    if client is None:
+        client = AsyncIOMotorClient(mongo_url)
+    return client[db_name]
 
 
 def now_iso() -> str:
@@ -117,10 +122,26 @@ DEFAULT_PRICING = {
 
 
 async def ensure_seed():
+    db = get_db()
     existing = await db.config.find_one({"key": "pricing"})
     if not existing:
         await db.config.insert_one(dict(DEFAULT_PRICING))
         logging.info("Seeded default pricing config")
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    global client
+    client = AsyncIOMotorClient(mongo_url)
+    await ensure_seed()
+    yield
+    if client:
+        client.close()
+        client = None
+
+
+app = FastAPI(title="Tapi Namastubhyam Charitable Trust API", lifespan=lifespan)
+api_router = APIRouter(prefix="/api")
 
 
 # ---------- Routes ----------
@@ -131,6 +152,7 @@ async def root():
 
 @api_router.get("/config/pricing")
 async def get_pricing():
+    db = get_db()
     doc = await db.config.find_one({"key": "pricing"}, {"_id": 0})
     if not doc:
         await ensure_seed()
@@ -140,6 +162,7 @@ async def get_pricing():
 
 @api_router.post("/bookings", response_model=Booking)
 async def create_booking(payload: BookingCreate):
+    db = get_db()
     booking = Booking(**payload.model_dump())
     await db.bookings.insert_one(booking.model_dump())
     return booking
@@ -147,6 +170,7 @@ async def create_booking(payload: BookingCreate):
 
 @api_router.get("/bookings", response_model=List[Booking])
 async def list_bookings():
+    db = get_db()
     docs = await db.bookings.find({}, {"_id": 0}).sort("created_at", -1).to_list(200)
     return docs
 
@@ -155,6 +179,7 @@ async def list_bookings():
 async def create_donation(payload: DonationCreate):
     if payload.amount <= 0:
         raise HTTPException(status_code=400, detail="Amount must be greater than zero")
+    db = get_db()
     donation = Donation(**payload.model_dump())
     await db.donations.insert_one(donation.model_dump())
     return donation
@@ -162,6 +187,7 @@ async def create_donation(payload: DonationCreate):
 
 @api_router.get("/donations/summary")
 async def donations_summary():
+    db = get_db()
     total = await db.donations.aggregate([
         {"$group": {"_id": None, "total": {"$sum": "$amount"}, "count": {"$sum": 1}}}
     ]).to_list(1)
@@ -172,6 +198,7 @@ async def donations_summary():
 
 @api_router.post("/contact", response_model=Contact)
 async def create_contact(payload: ContactCreate):
+    db = get_db()
     contact = Contact(**payload.model_dump())
     await db.contacts.insert_one(contact.model_dump())
     return contact
@@ -191,12 +218,3 @@ logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-
-@app.on_event("startup")
-async def startup_seed():
-    await ensure_seed()
-
-
-@app.on_event("shutdown")
-async def shutdown_db_client():
-    client.close()

@@ -135,9 +135,8 @@ const TimelineRow = ({ item, index, innerRef }) => {
       {/* dot */}
       <span className="absolute left-[-6px] md:left-1/2 md:-translate-x-1/2 top-2 h-3.5 w-3.5 rounded-full bg-saffron ring-4 ring-saffron/15 z-10" />
       <div
-        className={`pl-8 md:pl-0 ${
-          left ? "md:text-right md:pr-4" : "md:col-start-2 md:pl-4"
-        }`}
+        className={`pl-8 md:pl-0 ${left ? "md:text-right md:pr-4" : "md:col-start-2 md:pl-4"
+          }`}
       >
         <div className="text-xs uppercase tracking-[0.25em] text-saffron font-semibold">
           {item.era}
@@ -200,24 +199,34 @@ export const Timeline = () => {
           </Reveal>
         </div>
 
-        <div ref={containerRef} className="relative mt-20 space-y-16 md:space-y-24">
-          {/* track */}
+        <div ref={containerRef} className="relative mt-20">
+
+          {/* Track */}
           <div
             className="absolute left-[1px] md:left-1/2 md:-translate-x-1/2 top-[15px] w-px bg-border"
-            style={{ height: trackHeight ? `${trackHeight}px` : "calc(100% - 140px)" }}
+            style={{
+              height: trackHeight ? `${trackHeight}px` : "calc(100% - 100px)",
+            }}
           />
+
+          {/* Progress */}
           <motion.div
             style={{ height: lineHeight }}
             className="absolute left-[1px] md:left-1/2 md:-translate-x-1/2 top-[15px] w-px bg-gradient-to-b from-saffron via-gold to-river origin-top z-0"
           />
-          {timelineItems.map((item, i) => (
-            <TimelineRow
-              key={i}
-              item={item}
-              index={i}
-              innerRef={i === timelineItems.length - 1 ? lastRowRef : null}
-            />
-          ))}
+
+          {/* Timeline rows */}
+          <div className="space-y-16 md:space-y-24">
+            {timelineItems.map((item, i) => (
+              <TimelineRow
+                key={i}
+                item={item}
+                index={i}
+                innerRef={i === timelineItems.length - 1 ? lastRowRef : null}
+              />
+            ))}
+          </div>
+
         </div>
       </div>
     </section>
